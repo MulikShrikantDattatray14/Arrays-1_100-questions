@@ -1,0 +1,42 @@
+Given an array A of N non-negative numbers and a non-negative number B,
+you need to find the number of subarrays in A with a sum less than B.
+We may assume that there is no overflow.
+
+
+//////////////////////////////////////////////////////////////////////////
+    let ans = 0;
+        let n = A.length;
+        for (let i = 0; i < n; i++) {
+            let sum = 0n;
+            for (let j = i; j < n; j++) {
+                sum = sum + BigInt(A[j]);
+                if (sum < B) {
+                    ans++;
+                }
+                else break;
+            }
+
+        }
+        return Number(ans);
+
+
+
+ ////////////////////////////[OR]///////////////////////////////////////////
+let n = A.length;
+ let pref = [];
+ pref[0] = A[0];
+for(let i = 1; i < n; i++)
+ pref[i] = pref[i-1] + A[i];
+
+let ans = 0;
+ for(let i = 0 ; i < n; i++) {
+     let sum;
+     for(let j = i; j <n; j++) {
+          if(i==0) sum=pref[j]
+         else sum = Number(pref[j])-Number(pref[i-1]);
+
+        if(sum < B)
+        ans++;
+} }
+ return ans;
+    

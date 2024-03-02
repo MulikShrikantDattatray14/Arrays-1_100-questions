@@ -1,0 +1,47 @@
+The prefix sum formula for an array A of N integers is given by :-prefSum[i] = prefSum[i - 1] + A[i]
+
+What is the time complexity of creating the prefix sum array of an array A of N integers ?We have to traverse over the whole array and calculate each element of the prefix sum array
+with the recurrence pre[i] = pre[i - 1] + a[i].
+So, the time complexity of creating the prefix sum array is O(N).
+//////////////////////////////////////////////////////////////////////////////
+Example Input
+Input 1:
+A = [1, 2, 3, 4, 5]
+B = [[0, 3], [1, 2]]
+Input 2:
+
+A = [2, 2, 2]
+B = [[0, 0], [1, 2]]
+
+
+Example Output
+Output 1:
+[10, 5]
+Output 2:
+[2, 4]
+
+///////////////////////////////////////////////////////////////////////////////
+
+A = [2, 2, 2]
+B = [[0, 0], [1, 2]]
+
+let N = A.length;
+let PF = [];
+PF[0] = A[0];
+for (let i = 1; i < N; i++) {
+    PF[i] = PF[i - 1] + A[i];
+}
+
+let res = [];
+for (let j = 0; j < B.length; j++) {
+    let L = parseInt(B[j][0]);
+    let R = parseInt(B[j][1]);
+    if (L == 0) {
+        //res[j] =parseInt( PF[R]);
+        res.push(parseInt(PF[R]));
+    } else {
+        //res[j] =parseInt(PF[R]) - parseInt(PF[L - 1]);
+        res.push(parseInt(PF[R]) - parseInt(PF[L - 1]));
+    }
+}
+console.log(res);

@@ -1,0 +1,43 @@
+solve : function(A){
+let n = A.length;
+        let index = 0;
+        // This loop calculates the largest element in the list.
+        for(let i = 1; i < n; i++) {
+            if(A[i] > A[index])
+                index = i;
+        }
+        let ans = -1;
+        // now as we have found the index of the largest element, now lets skip this index and 
+        //again find the largest element from the remaining elements in the array.
+        // This loop calculates the second largest element in the list. 
+        for(let i = 0; i < n; i++) {
+            if(A[i] != A[index] && A[i] > ans)
+                ans = A[i];
+                
+        }
+        return Number(ans);
+	}
+
+
+    ==============================================================================================================================  [OR]=============================================================================
+
+    A = [2, 1, 2]
+let ans = solve(A)
+console.log(ans)
+function solve(A) {
+    let set = new Set(A)
+    if (set.size == 1 || A.length == 0 || A.length == 1) return -1;
+    A = A.map((ele) => Number(ele))
+    let largest = Number.MIN_SAFE_INTEGER
+    let second_largest = Number.MIN_SAFE_INTEGER
+    for (let i = 0; i < A.length; i++) {
+        if (A[i] > largest) {
+            second_largest = largest;
+            largest = A[i];
+
+        } else if (A[i] > second_largest && A[i] != largest) {
+            second_largest = A[i];
+        }
+    }
+    return second_largest
+}

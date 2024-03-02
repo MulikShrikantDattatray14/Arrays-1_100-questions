@@ -1,0 +1,92 @@
+Example Input
+Input 1:
+
+ A = [   [1, 2, 3],
+         [4, 5, 6],
+         [7, 8, 9]   ]
+ B = [1, 2]
+ C = [1, 2]
+ D = [2, 3]
+ E = [2, 3]
+Input 2:
+
+ A = [   [5, 17, 100, 11]
+         [0, 0,  2,   8]    ]
+ B = [1, 1]
+ C = [1, 4]
+ D = [2, 2]
+ E = [2, 4]
+
+
+Example Output
+Output 1:
+
+ [12, 28]
+Output 2:
+
+ [22, 19]
+
+
+Example Explanation
+Explanation 1:
+
+ For query 1: Submatrix contains elements: 1, 2, 4 and 5. So, their sum is 12.
+ For query 2: Submatrix contains elements: 5, 6, 8 and 9. So, their sum is 28.
+Explanation 2:
+
+ For query 1: Submatrix contains elements: 5, 17, 0 and 0. So, their sum is 22.
+ For query 2: Submatrix contains elements: 11 and 8. So, their sum is 19.
+ 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+let A = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+];
+let B = [1, 2];
+let C = [1, 2];
+let D = [2, 3];
+let E = [2, 3];
+
+let mod = 1000000007;
+const preSum = prefixMatrixSum(A);
+function prefixMatrixSum(A) {
+    const n = A.length;
+    const m = A[0].length;
+    const preSum = new Array(n + 1).fill(0).map(() => new Array(m + 1).fill(0));
+
+    for (let i = 1; i <= n; i++) {
+        for (let j = 1; j <= m; j++) {
+            preSum[i][j] =
+                (A[i - 1][j - 1] + preSum[i - 1][j] + preSum[i][j - 1] - preSum[i - 1][j - 1] + mod) % mod;
+        }
+    }
+
+    return preSum;
+}
+
+const res = new Array(B.length);
+
+for (let i = 0; i < B.length; i++) {
+    const x1 = B[i];
+    const y1 = C[i];
+    const x2 = D[i];
+    const y2 = E[i];
+
+    let ans =
+        preSum[x2][y2] -
+        preSum[x2][y1 - 1] -
+        preSum[x1 - 1][y2] +
+        preSum[x1 - 1][y1 - 1];
+
+    while (ans < 0) {
+        ans += mod;
+    }
+
+    ans = ans % mod;
+    res[i] = ans;
+}
+
+console.log(res);

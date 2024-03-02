@@ -1,0 +1,16 @@
+Given an array A of N integers and also given two integers B and C. Reverse the elements of the array A within the given inclusive range [B, C].
+
+
+ function solve(A, B, C) {
+        let start = B;
+        let end = C;
+        while (end > start) {
+            let temp = A[start];
+            A[start] = A[end];
+            A[end] = temp;
+            start++;
+            end--;
+        }
+        return A;
+
+    }

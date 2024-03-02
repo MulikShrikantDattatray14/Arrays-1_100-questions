@@ -1,0 +1,39 @@
+Problem Description : 
+
+Given an array of integers A and an integer B, find and return the minimum number of swaps required to bring all the numbers less than or equal to B together.
+
+Note: It is possible to swap any two elements, not necessarily consecutive.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ solve: function (A, B) {
+        let n = A.length;
+        // find k size- window size
+        let k = 0;
+        for (let i = 0; i < n; i++) {
+            if (A[i] <= B) {
+                k++;
+            }
+        }
+
+        // find no of swaps for very 1st subarray
+        let bad = 0;
+        for (let i = 0; i < k; i++) {
+            if (A[i] > B) {
+                bad++;
+            }
+        }
+
+        let ans = bad;
+
+        //check no of swaps for rest subarrays also
+
+        let start = 1
+        let end = k;
+        while (end < n) {
+            if (A[start - 1] > B) bad--;
+            if (A[end] > B) bad++;
+            ans = Math.min(ans, bad)// we are looking for minimum swaps
+            start++; end++;
+        }
+        return (ans)
+    }

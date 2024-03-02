@@ -1,0 +1,9 @@
+Given an array A of N integers. Construct prefix sum of the array in the given array itself.
+
+function  solve(A) {
+        let n = A.length;
+        for (let i = 1; i < n; i++) {
+           A[i] = A[i - 1] + A[i]
+        }
+        return (A)
+}

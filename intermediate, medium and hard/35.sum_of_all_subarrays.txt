@@ -1,0 +1,45 @@
+note : total subarrays - (n*(n+1))/2
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+let A = [1, 2, 3]//20
+//optimal solution -count subarrays which contains the index- i
+// note : total subarray which contains the index i in  an array of size N -
+//(i+1) + (N-i)
+let n = A.length;
+let ans = 0;
+for (let i = 0; i < A.length; i++) {
+  let total_subarr = (i + 1) * (n - i);
+  let contribution = total_subarr * A[i];
+  ans = ans + contribution;
+}
+console.log(ans);
+
+//////////////////////////////////////////////////////////////////////////////
+// brute force using carry forward -
+
+let n = A.length;
+
+for (let start = 0; start < n; start++) {
+  let sum = 0;
+  for (let end = start; end < n; end++) {
+    sum = sum + A[end];
+    console.log(sum);
+  }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+///brute force-prefix sum= n square and 0(1) space complexity
+let n =A.length;
+let pf=[];
+pf[0]=A[0];
+for(let i=1;i<n;i++) pf[i]=pf[i-1]+A[i]
+
+let sum=0;
+for(let i=0;i<n;i++){
+    for(let j=i;j<n;j++){
+        if(i==0) sum=sum+pf[j];
+        else sum=sum+pf[j]-pf[i-1]
+    }
+}
+console.log(sum)

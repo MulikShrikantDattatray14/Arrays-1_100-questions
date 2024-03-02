@@ -1,0 +1,60 @@
+
+Given an integer A, generate a square matrix filled with elements from 1 to A2 in spiral order and return the generated square matrix.
+
+================================================================================================================================================================================================================================
+
+
+
+function generateMatrix(A) {
+    let row = 0,
+        col = 0,
+        num = 1;
+
+    //Create and initialize empty 2D of length A
+    let res = [];
+    for (let i = 0; i < A; i++) {
+        res[i] = [];
+    }
+
+    while (A > 1) {
+        // left to right ,column traversal
+        for (c = 1; c <= A - 1; c++) {
+            res[row][col] = num;
+            num++;
+            col++;
+        }
+        // top to down ,row traversal
+        for (c = 1; c <= A - 1; c++) {
+            res[row][col] = num;
+            num++;
+            row++;
+        }
+        //right to left , column traversal
+        for (c = 1; c <= A - 1; c++) {
+            res[row][col] = num;
+            num++;
+            col--;
+        }
+        ///bottom to top , row traversal
+        for (c = 1; c <= A - 1; c++) {
+            res[row][col] = num;
+            num++;
+            row--;
+        }
+        A = A - 2;
+        //move diagonally inside
+        row++;
+        col++;
+    }
+    if (A == 1) {
+        res[row][col] = num;
+    }
+    return res;
+}
+let ans = generateMatrix(5)
+console.log(ans)
+
+////////////////////////////////////////////////////////////////////////
+
+
+============================================================================================================

@@ -1,0 +1,33 @@
+As the first n natural numbers are 1,2,3,4,5,6,.........n
+They form an AP with a=1 and d=1
+The sum of AP for n numbers = ((2*a + (n-1)*d)*n)/2
+=((2 + n - 1)*n)/2
+=(n*(n+1))/2
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+note : 
+
+How many elements are there between [135, 246] (inclusive of them) ?
+
+The number of elements in the range[a,b] is
+b - a + 1
+246 - 135 + 1 = 112
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+What is the number of times we need to divide N by 2 till it reaches 1 ?
+
+Let N be the number (N>1) that you want to divide. Say that you have to divide it k times. Then
+1 <= N / 2^k < 2
+Therefore, 
+0 = log1 <= -k + logN < log2 = 1
+k <= logN < k + 1
+k = floor(logN)
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+Insertion and deletion at the beginning of the array is O(N)
+because all the elements after it have to have their indexes recomputed.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////

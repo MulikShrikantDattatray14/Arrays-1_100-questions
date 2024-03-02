@@ -1,0 +1,46 @@
+// max consective ones- atmost one replace . given binary arr[];
+, we can atmost replace a single 0 with 1. find the max consecutive 1's we get in arr[].
+
+
+
+// ======================================================================================================
+
+
+let arr = [0, 1, 1, 0, 1, 1, 1, 0, 1, 1];
+// Expected output: 6, as the longest sequence of 1s is [1, 1, 1, 0, 1, 1]
+let n = arr.length;
+let count = 0;
+//check if in the given array every element is 1, if yes , then return their count
+for (let i = 0; i < n; i++) {
+    if (arr[i] == 1) count++;
+}
+if (count == n) return count;
+
+let ans = 0;
+
+for (let i = 0; i < n; i++) {
+    // search for count of 1's left and right of zero
+    if (arr[i] == 0) {
+        let left = 0;
+        let right = 0;
+
+        for (let j = i - 1; j >= 0; j--) {
+            if (arr[j] == 1) {
+                left++;
+            } else break;
+        }
+
+        for (let j = i + 1; j < n; j++) {
+            if (arr[j] == 1) {
+                right++;
+            } else break;
+        }
+
+        if (left + right + 1 > ans) {
+            ans = left + right + 1;
+        }
+        //console.log(arr[i], left, right, ans)
+    }
+
+}
+console.log(ans)

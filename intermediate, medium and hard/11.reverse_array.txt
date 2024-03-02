@@ -1,0 +1,12 @@
+ let start = 0;
+
+let end = A.length - 1;
+
+while (end > start) {
+let temp = A[start];
+A[start] = A[end];
+A[end] = temp;
+start++;
+ end--
+}
+ return A;

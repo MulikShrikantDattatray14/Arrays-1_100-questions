@@ -1,0 +1,11 @@
+for (let i = 1; i <= 10000; i++) {
+    if (i * i === A) {
+      return i;
+    }
+ }
+  return -1;
+
+
+  Find the number of times below code runs where N is a perfect square?
+
+  -The code runs for sqrt(N) times.

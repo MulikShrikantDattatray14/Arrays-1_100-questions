@@ -1,0 +1,44 @@
+Given a non-negative number represented as an array of digits, add 1 to the number ( increment the number represented by the digits ).
+
+The digits are stored such that the most significant digit is at the head of the list.
+
+Example Input
+Input 1:
+[1, 2, 3]
+
+Example Output
+Output 1:
+[1, 2, 4]
+
+Example Explanation
+Explanation 1:
+Given vector is [1, 2, 3].
+The returned vector should be [1, 2, 4] as 123 + 1 = 124.
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function solve(digits) {
+    let i = digits.length - 1; // last index
+    while (i >= 0) {
+        if (digits[i] !== 9) {
+            digits[i] = digits[i] + 1;
+            return digits;
+        }
+        digits[i] = 0;
+        i--;// move towards 0th index
+    }
+
+    const res = new Array(digits.length + 1).fill(0);
+    res[0] = 1;
+    return res;
+}
+let A = [0, 0, 9, 9, 9, 9, 9]
+let res = solve(A);
+console.log(res)
+for (let i = 0; i < A.length; i++) {
+    if (res[0] == 0) {
+        res.shift();
+    }
+}
+console.log(res);
+

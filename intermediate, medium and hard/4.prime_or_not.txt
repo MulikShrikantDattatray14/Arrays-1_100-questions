@@ -1,0 +1,19 @@
+// prime number - has only 2 factors - 1 ans the number itself
+
+let A = 10;
+let ans = primeornot(A)
+console.log(ans)
+
+function primeornot(A) {
+    let count = 0;
+    for (let i = 1; i * i <= Number(A); i++) {
+        if (Number(A) % i == 0) {
+            if (i == Number(A / i))
+                count += 1;
+            else
+                count += 2;
+        }
+    }
+    if (count == 2) return (`${A} is a prime number `);
+    else return (`${A} is not a prime number `);
+}

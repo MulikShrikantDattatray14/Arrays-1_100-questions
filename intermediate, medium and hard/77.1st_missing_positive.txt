@@ -1,0 +1,105 @@
+https://leetcode.com/problems/first-missing-positive/description/
+
+Problem Description
+Given an unsorted integer array, A of size N. Find the first missing positive integer.
+
+Note: Your algorithm should run in O(n) time and use constant space.
+
+
+
+Problem Constraints
+1 <= N <= 1000000
+
+-109 <= A[i] <= 109
+
+
+
+Input Format
+First argument is an integer array A.
+
+
+
+Output Format
+Return an integer denoting the first missing positive integer.
+
+
+
+Example Input
+Input 1:
+
+[1, 2, 0]
+Input 2:
+
+[3, 4, -1, 1]
+Input 3:
+
+[-8, -7, -6]
+
+
+Example Output
+Output 1:
+
+3
+Output 2:
+
+2
+Output 3:
+
+1
+
+
+Example Explanation
+Explanation 1:
+
+A = [1, 2, 0]
+First positive integer missing from the array is 3.
+Explanation 2:
+
+A = [3, 4, -1, 1]
+First positive integer missing from the array is 2.
+Explanation 3:
+
+A = [-8, -7, -6]
+First positive integer missing from the array is 1.
+
+
+================================================================================================================================================================================================================================
+
+
+
+  // REFER THE VIDEO BELOW FOR CONCEPTUAL AN CODE PART -
+        //https://www.youtube.com/watch?v=aBhla9jSAeg 
+
+//https://www.youtube.com/watch?v=aBhla9jSAeg&t=1066s
+
+let A = [3, 4, -1, 1];
+
+let ans = firstMissingPositive(A);
+console.log(ans);
+
+
+function firstMissingPositive(A) {
+    let nums = A;
+    const n = nums.length;
+    for (let i = 0; i < nums.length; i++) {
+        let element = nums[i];
+        let chair = element - 1;// 0 based index
+        if (element >= 1 && element <= n) {// check for positive and also the range[1,n]
+            if (nums[chair] !== element) {// element is not on its proper position, so swap 
+                let temp = nums[chair];
+                nums[chair] = nums[i];
+                nums[i] = temp;
+                i--;//so that we come back to same position
+            }
+        }
+    }
+    // now nums is sorted and is on its position , like on the 0th index, we will have 1 , on 1st index we will have 2 and so on.....
+    for (let i = 0; i < nums.length; i++) {
+        if (i + 1 !== nums[i]) {
+            return i + 1;
+        }
+    }
+
+    return n + 1;
+}
+

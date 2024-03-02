@@ -1,0 +1,32 @@
+You are given an integer array C of size A. Now you need to find a subarray (contiguous elements) so that the sum of contiguous elements is maximum.
+But the sum must not exceed B.
+
+
+function maxSubarray(A, B, C) {
+
+        let ans = 0;
+        for (let i = 0; i < A; i++) {
+            let sum = 0n;
+            for (let j = i; j < A; j++) {
+                sum += C[j];
+                if (sum <= B && ans < sum)
+                    ans = Number(sum);
+            }
+        }
+        return ans;
+    }
+
+
+////////////////////////////////////////////////////////////////////////////////
+let A = [1, 2, 3]; //20
+
+let n = A.length;
+let max=-Infinity
+for (let start = 0; start < n; start++) {
+  let sum = 0;
+  for (let end = start; end < n; end++) {
+    sum = sum + A[end];
+    max=Math.max(max,sum)
+  }
+}
+console.log(max)

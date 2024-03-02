@@ -1,0 +1,43 @@
+Given a row-wise and column-wise sorted matrix A of size N * M.
+Return the maximum non-empty submatrix sum of this matrix.
+
+//////////////////////////////////////////////////////////////////////////////////////
+example:
+The largest submatrix with max sum is 
+1 2 3
+4 5 6
+7 8 9
+The sum is 45.
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+function solve(A) {
+    // the top left is where sum of that sum matrix is present.
+    let maxsum = Number.MIN_SAFE_INTEGER;
+    const N = A.length;
+    const M = A[0].length;
+    const row = N - 1;
+    const col = M - 1;
+    if (A[row][col] < 0) return A[row][col];
+    const pf = new Array(N + 1).fill(0).map(() => new Array(M + 1).fill(0));
+    for (let i = N - 1; i >= 0; i--) {
+        for (let j = M - 1; j >= 0; j--) {
+            // start filling from the bottom right and go till top left
+            pf[i][j] = A[i][j] + pf[i + 1][j] + pf[i][j + 1] - pf[i + 1][j + 1];
+            maxsum = Math.max(pf[i][j], maxsum);
+            console.log(pf[i][j]);
+        }
+        console.log(pf);
+        console.log("==========================================================");
+    }
+    return maxsum;
+}
+// Example usage:
+const inputArray = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+];
+
+const result = solve(inputArray);
+console.log(result);

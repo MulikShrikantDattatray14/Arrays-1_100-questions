@@ -1,0 +1,13 @@
+Given an array A and an integer B. A pair(i, j) in the array is a good pair if i != j and (A[i] + A[j] == B). Check if any good pair exist or not.
+
+
+
+ let n = A.length;
+        for (let i = 0; i < n; i++) {
+            for (let j = i + 1; j < n; j++) {
+
+                if (A[i] + A[j] == B)
+                    return 1;
+            }
+        }
+        return 0;

@@ -1,0 +1,12 @@
+let n = A.length;
+let m = A[0].length;
+let ans = [];
+for (let col = 0; col < m; col++) {
+    let sum = 0;
+    for (let row = 0; row < n; row++) {
+        sum = sum + A[row][col];
+
+    }
+    ans.push(sum);
+}
+return ans;

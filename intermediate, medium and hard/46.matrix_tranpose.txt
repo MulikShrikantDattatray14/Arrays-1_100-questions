@@ -1,0 +1,41 @@
+The transpose of a matrix is the matrix flipped over its main diagonal, switching the matrix's row and column indices.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// if input is not a square matrix - 
+
+let A = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+let ans = solve(A)
+console.log(ans)
+function solve(A) {
+    let n = A.length;
+    let m = A[0].length;
+    let final = [];
+    for (let j = 0; j < m; j++) {//column
+        let ans = [];
+        for (let i = 0; i < n; i++) {//row
+            ans.push(A[i][j])
+        }
+        final.push(ans);
+
+    }
+    return (final)
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//if it a sqaure matrix : 
+
+
+let A = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+
+let row = A.length;
+let col = A[0].length;
+
+for (let i = 0; i < row; i++) {
+    for (let j = i + 1; j < col; j++) {
+        let temp = A[i][j];
+        A[i][j] = A[j][i];
+        A[j][i] = temp
+
+    }
+}
+console.log(A)

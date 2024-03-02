@@ -1,0 +1,122 @@
+Problem Description
+Given a 2D integer matrix A of size N x N, find a B x B submatrix where B<= N and B>= 1, such that the sum of all the elements in the submatrix is maximum.
+
+
+
+Problem Constraints
+1 <= N <= 103.
+
+1 <= B <= N
+
+-102 <= A[i][j] <= 102.
+
+
+
+Input Format
+First arguement is an 2D integer matrix A.
+
+Second argument is an integer B.
+
+
+
+Output Format
+Return a single integer denoting the maximum sum of submatrix of size B x B.
+
+
+
+Example Input
+Input 1:
+
+ A = [
+        [1, 1, 1, 1, 1]
+        [2, 2, 2, 2, 2]
+        [3, 8, 6, 7, 3]
+        [4, 4, 4, 4, 4]
+        [5, 5, 5, 5, 5]
+     ]
+ B = 3
+Input 2:
+
+ A = [
+        [2, 2]
+        [2, 2]
+    ]
+ B = 2
+
+
+Example Output
+Output 1:
+
+ 48
+Output 2:
+
+ 8
+
+
+Example Explanation
+Explanation 1:
+
+    Maximum sum 3 x 3 matrix is
+    8 6 7
+    4 4 4
+    5 5 5
+    Sum = 48
+Explanation 2:
+
+ Maximum sum 2 x 2 matrix is
+  2 2
+  2 2
+  Sum = 8
+
+
+================================================================================================================
+
+
+
+
+let A = [
+    [1, 1, 1, 1, 1],
+    [2, 2, 2, 2, 2],
+    [3, 8, 6, 7, 3],
+    [4, 4, 4, 4, 4],
+    [5, 5, 5, 5, 5],
+];
+
+let B = 3;
+// when row and col are not sorted ( use kadan algo)
+function prefix(A) {
+    const n = A.length;
+    const m = A[0].length;
+    const preSum = new Array(n + 1).fill(0).map(() => new Array(m + 1).fill(0));
+
+    for (let i = 1; i <= n; i++) {
+        for (let j = 1; j <= m; j++) {
+            preSum[i][j] =
+                A[i - 1][j - 1] +
+                preSum[i - 1][j] +
+                preSum[i][j - 1] -
+                preSum[i - 1][j - 1];
+        }
+    }
+    return preSum;
+}
+
+let prefsum = prefix(A);
+console.log(prefsum)
+let max = Number.MIN_SAFE_INTEGER;
+for (let i = 1; i <= prefsum.length - B; i++) {
+    for (let j = 1; j <= prefsum[0].length - B; j++) {
+        const x1 = i;
+        const y1 = j;
+        const x2 = x1 + B - 1;
+        const y2 = y1 + B - 1;
+        let ans =
+            prefsum[x2][y2] -
+            prefsum[x2][y1 - 1] -
+            prefsum[x1 - 1][y2] +
+            prefsum[x1 - 1][y1 - 1];
+
+        max = Math.max(max, ans);
+    }
+}
+console.log(max);

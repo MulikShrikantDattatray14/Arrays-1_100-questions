@@ -1,0 +1,42 @@
+// the question is same as ques-81 , but here the row and col are not sorted.
+
+
+let A = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+];
+// when row and col are not sorted ( use kadan algo)
+let M = A;
+let R = A.length;
+let C = A[0].length;
+let sum = new Array(R).fill(0);
+let maxsum = Number.MIN_SAFE_INTEGER;
+for (let start = 0; start < C; start++) {
+    sum.fill(0);
+    for (let end = start; end < C; end++) {
+        for (let row = 0; row < R; row++) {
+            sum[row] = sum[row] + M[row][end];
+        }
+
+        let curmaxsum = kadans(sum);
+        maxsum = Math.max(maxsum, curmaxsum)
+    }
+}
+console.log(maxsum)
+
+function kadans(A) {
+    let ans = Number.MIN_SAFE_INTEGER;
+    let sum = 0;
+    let n = A.length;
+    for (let i = 0; i < n; i++) {
+        sum = sum + A[i];
+        if (sum > ans) {
+            ans = sum;
+        }
+        if (sum < 0) {
+            sum = 0
+        }
+    }
+    return ans;
+}

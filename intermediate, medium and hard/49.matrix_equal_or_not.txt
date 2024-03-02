@@ -1,0 +1,9 @@
+let n = A.length;
+let m = A[0].length;
+// Iterating over the rows
+for (let i = 0; i < n; i++)
+    // Iterating over the columns
+    for (let j = 0; j < m; j++)
+        if (A[i][j] != B[i][j])
+            return 0;
+return 1;

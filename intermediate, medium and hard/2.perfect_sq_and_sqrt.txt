@@ -1,0 +1,10 @@
+given a  number , return its square root or its floor value
+
+let ans;
+let n =48;
+let i=1;
+while(i*i <=n){
+    ans=i;
+    i++
+}
+console.log(ans)

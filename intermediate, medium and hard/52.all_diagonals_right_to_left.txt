@@ -1,0 +1,31 @@
+let mat=[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
+// logic - as we go down , row increases and column decrease
+// step-1 : every cell starting  the diagonal from 0th row.
+let m=mat[0].length;
+let n= mat.length
+for(let j=0;j<m;j++){
+  // x starts always start from 0th row and y changes continuously(column)
+  let x=0; let y=j;
+
+  while(x<n && y>=0){
+    console.log(mat[x][y]);
+    x++;
+    y--;
+  }
+  console.log()
+}
+
+//step-2: every cell starting the diagonal from m-1th row 
+
+for(let i=1;i<n;i++){
+  // // y starts always start from last column  and x changes continuously(row)
+  let x=i; let y=m-1;
+
+  while(x<n && y>=0){
+    console.log(mat[x][y]);
+    x++;
+    y--;
+  }
+  console.log()
+}
+  

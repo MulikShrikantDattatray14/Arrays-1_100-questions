@@ -1,0 +1,13 @@
+given n , how many times we need to divide n by 2 until it becomes 1?
+
+- floor(n/2)
+
+
+===============================================================================================================
+note : 
+All the positive non-zero integers are called Natural numbers. All the positive integers, including zero, are called whole numbers.
+
+sum of 1st n natural number - (n*(n+1))/2
+
+
+sum of 1st whole number - ((n-1)*n)/2

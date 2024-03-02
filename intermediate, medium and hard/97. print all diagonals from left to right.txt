@@ -1,0 +1,45 @@
+question:- print all diagonals from left to right :-
+
+let A = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+let N = A.length;
+let M = A[0].length
+
+
+
+let A = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+let row = A.length;
+let col = A[0].length;
+
+// print all diagonals going from left to right
+
+//observation:- every cell start from 0th row and 0th col.
+
+// row is increasing and column is also increasing 
+
+
+//step-1:- start from 0th row
+let final = [];
+
+for (let j = col - 1; j >= 0; j--) {
+    let x = 0;
+    let y = j; let ans = [];
+    while (x < row && y < col) {
+        ans.push(A[x][y]);
+        x++;
+        y++;
+    }
+    final.push(ans)
+}
+
+// step-2: start from the 0th column.
+for (let i = 1; i < row; i++) {
+    let x = i; let y = 0; let ans = [];
+    while (x < row && y < col) {
+        ans.push(A[x][y]);
+        x++;
+        y++;
+    }
+    final.push(ans)
+}
+
+console.log(final)

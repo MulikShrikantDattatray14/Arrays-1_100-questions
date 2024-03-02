@@ -1,0 +1,31 @@
+Input 1:
+A = [1, 2, 3, 4,5]
+B = 3
+output : 
+[4,5,3,1,2]
+
+
+   function solve(A, B) {
+        
+            let n = A.length;
+            B = B % n;
+            //reverse the entire array
+            reverse(A, 0, n - 1);
+            //reverse first B elements
+            reverse(A, 0, B - 1);
+            //reverse from b to n-1
+            reverse(A, B, n - 1);
+
+            return A;
+
+        
+        function reverse(A, start, end) {
+            while (start < end) {
+                let temp = A[start];
+                A[start] = A[end];
+                A[end] = temp;
+                start++;
+                end--;
+            }
+        }
+   }

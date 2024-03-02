@@ -1,0 +1,36 @@
+Example Input
+Input 1:
+A = [1, 2, 3, 4, 5]
+B = [[0, 3], [1, 2]]
+Input 2:
+
+A = [2, 2, 2]
+B = [[0, 0], [1, 2]]
+
+
+Example Output
+Output 1:
+[10, 5]
+Output 2:
+
+[2, 4]
+
+
+================================================================================================================
+A = [2, 2, 2]
+B = [[0, 0], [1, 2]]
+
+let ans = solve(A, B)
+console.log(ans)//[2,4]
+function solve(A, B) {
+    let ans = [];
+    for (let i = 0; i < B.length; i++) {
+        let sum = 0;
+        for (let j = parseInt(B[i][0]); j <= parseInt(B[i][1]); j++) {
+            sum += parseInt(A[j]);
+        }
+        ans[i] = sum;
+    }
+    return ans;
+
+}

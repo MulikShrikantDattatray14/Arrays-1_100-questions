@@ -1,0 +1,25 @@
+//note : Total number of subarrays of an array of size N is-N*(N + 1)/2
+//So, 21 * (21 + 1) / 2 = 21 * 11 = 231
+
+
+let A = [1, 2, 3, 4, 5, 6];
+let ans = solve(A)
+console.log(ans)
+
+
+function solve(A) {
+    let n = A.length;
+    let finalarr = [];
+    for (let start = 0; start < n; start++) {
+        for (let end = start; end < n; end++) {
+            let subarr = [];
+            for (let k = start; k <= end; k++) {
+                subarr.push(A[k])
+            }
+            finalarr.push(subarr)
+        }
+
+    }
+    return finalarr;
+
+}

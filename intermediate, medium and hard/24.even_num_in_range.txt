@@ -1,0 +1,43 @@
+
+function solve(A, B) {
+    let n = A.length;
+    // convert even numbers to 1 and odd numbers to 0
+    // in case question is asked - odd num in range - convert the odd numbers to 1 and even numbers to 0
+    let PF = [];
+    if ((parseInt(A[0]) % 2 == 0)) {
+        PF[0] = 1;
+    }
+    else {
+        PF[0] = 0;
+    }
+    for (let i = 1; i < n; i++) {
+        if ((parseInt(A[i]) % 2 == 0)) {
+            PF[i] = PF[i - 1] + 1;
+        }
+        else {
+            PF[i] = PF[i - 1];
+        }
+    }
+
+    let ans = [];
+    for (let j = 0; j < B.length; j++) {
+        let l = B[j][0];
+        let r = B[j][1];
+        if (l == 0) {
+            ans.push(PF[r]);
+        }
+        else {
+            ans.push(PF[r] - PF[l - 1])
+        }
+
+    }
+    return (ans)
+
+}
+A = [2, 1, 8, 3, 9, 6]
+B = [[0, 3],
+[3, 5],
+[1, 3],
+[2, 4]]
+let ans = solve(A, B)
+console.log(ans)//[ 2, 1, 1, 1 ]

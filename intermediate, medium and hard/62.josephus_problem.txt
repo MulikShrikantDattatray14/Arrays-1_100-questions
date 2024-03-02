@@ -1,0 +1,10 @@
+ solve: function (A) {
+        let closest = Number.MIN_VALUE;
+        for (let i = 1; 2 ** i <= A; i++) {
+            closest = 2 ** i;
+        }
+        let kills = A - closest;
+        let ans = 1 + (2 * kills);
+        return (ans)
+
+    }
